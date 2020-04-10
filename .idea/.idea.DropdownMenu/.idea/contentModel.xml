@@ -5,8 +5,10 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="a.cs" t="Include" />
           <e p="InputBehaviour.cs" t="Include" />
           <e p="MyDropDown.cs" t="Include" />
+          <e p="MyDropDownReload.cs" t="Include" />
         </e>
       </e>
       <e p="DropdownMenu.sln" t="IncludeFlat" />

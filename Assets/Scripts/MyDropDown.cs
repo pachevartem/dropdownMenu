@@ -118,11 +118,11 @@ public class MyDropDown : Dropdown
 
     protected override GameObject CreateBlocker(Canvas rootCanvas)
     {
-        Debug.Log("CreateBlocker");
-        var a = base.CreateBlocker(rootCanvas);
-        a.GetComponent<Image>().raycastTarget = false;
-        return a;
-//        return base.CreateBlocker(rootCanvas);
+//        Debug.Log("CreateBlocker");
+//        var a = base.CreateBlocker(rootCanvas);
+//        a.GetComponent<Image>().raycastTarget = false;
+//        return a;
+        return base.CreateBlocker(rootCanvas);
     }
 
     protected override void DestroyBlocker(GameObject blocker)
@@ -132,49 +132,49 @@ public class MyDropDown : Dropdown
 
     public void rrrrr(List<string> items)
     {
-        foreach (var s in options)
-        {
-            var _tempDropdownItem = new DropdownItem();
-
-            if (_tempDropdownItem.text != null)
-            {
-                _tempDropdownItem.text.text = s.text;
-            }
-
-            DestroyItem(_tempDropdownItem);
-        }
-//        DestroyDropdownList(template.gameObject);
-
-        CreateDropdownList(template.gameObject);
-        foreach (string s in items)
-        {
-//            CreateItem(itemText.);
-        }
+//        foreach (var s in options)
+//        {
+//            var _tempDropdownItem = new DropdownItem();
+//
+//            if (_tempDropdownItem.text != null)
+//            {
+//                _tempDropdownItem.text.text = s.text;
+//            }
+//
+//            DestroyItem(_tempDropdownItem);
+//        }
+////        DestroyDropdownList(template.gameObject);
+//
+//        CreateDropdownList(template.gameObject);
+//        foreach (string s in items)
+//        {
+////            CreateItem(itemText.);
+//        }
     }
 
     protected override GameObject CreateDropdownList(GameObject template)
     {
-        Debug.Log("CreateDropdownList");
+//        Debug.Log("CreateDropdownList");
         return base.CreateDropdownList(template);
     }
 
     protected override void DestroyDropdownList(GameObject dropdownList)
     {
-        Debug.Log("DestroyDropdownList");
+//        Debug.Log("DestroyDropdownList");
 
         base.DestroyDropdownList(dropdownList);
     }
 
     protected override DropdownItem CreateItem(DropdownItem itemTemplate)
     {
-        Debug.Log("CreateItem");
+//        Debug.Log("CreateItem");
 
         return base.CreateItem(itemTemplate);
     }
 
     protected override void DestroyItem(DropdownItem item)
     {
-        Debug.Log("DestroyItem");
+//        Debug.Log("DestroyItem");
 
         base.DestroyItem(item);
     }
