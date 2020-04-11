@@ -6,31 +6,23 @@ using UnityEngine.UI;
 public class MyDropDownReload : MonoBehaviour
 {
     [SerializeField]
-    private InputField _inputField;
+    private InputField _inputField = null;
     [SerializeField]
-    private GameObject _contentObject;
+    private GameObject _contentObject = null;
 
     public GameObject prefabsUIButton;
     public List<string> words = new List<string>();
-    
+
+    public Font Font;
+    public Color ColorFont;
     
     private Dictionary<string, Transform> myButtons = new Dictionary<string, Transform>();
     
-    void AddButton(string name)
-    {
-        var obj = Instantiate(prefabsUIButton);
-        obj.transform.SetParent(_contentObject.transform);
-        var myText = obj.GetComponentInChildren<Text>();
-        myText.text = name;
-        
-        myButtons.Add(name,obj.transform);
-    }
-
     void GenerateDropDownMenu(List<string> words)
     {
         foreach (var word in words)
         {
-            AddButton(word);
+            AddButton(word, _contentObject.transform, (RectTransform) _inputField.transform);
         }
     }
 
@@ -73,7 +65,6 @@ public class MyDropDownReload : MonoBehaviour
     void Start()
     {
         words = setupWords();
-        
         _inputField.onValueChanged.AddListener(OnValueChange);
     }
 
@@ -82,4 +73,41 @@ public class MyDropDownReload : MonoBehaviour
         ClearDropDownMenu();
         GenerateDropDownMenu(FindWords(arg0));
     }
+
+    GameObject GetNewUIButton()
+    {
+        GameObject button = new GameObject("UIButton", typeof(RectTransform),typeof(CanvasRenderer), typeof(Image), typeof(Button));
+        GameObject textObject = new GameObject("text", typeof(Text));
+        textObject.gameObject.transform.SetParent(button.transform);
+        Text text = textObject.GetComponent<Text>();
+        text.font = Font;
+        text.alignment = TextAnchor.MiddleLeft;
+        text.color = ColorFont;
+        ((RectTransform) textObject.transform).anchorMin = new Vector2(0,0);
+        ((RectTransform) textObject.transform).anchorMax = new Vector2(1,1);
+        
+        // ((RectTransform) textObject.transform).rect.Set(0,0,0,0);
+        ((RectTransform) textObject.transform).offsetMin = new Vector2(10,0);
+        ((RectTransform) textObject.transform).offsetMax = new Vector2(0,0);
+
+        return button;
+    }
+    
+    void AddButton(string name, Transform content, RectTransform inputField)
+    {
+        var obj = GetNewUIButton();
+        obj.transform.SetParent(content.transform);
+        var myText = obj.GetComponentInChildren<Text>();
+        myText.text = name;
+
+        var grigLayout = content.GetComponent<GridLayoutGroup>();
+        
+        var rect = inputField.rect;
+        grigLayout.cellSize = new Vector2(rect.width,rect.height);
+        
+        myButtons.Add(name,obj.transform);
+    }
+
+    
+
 }

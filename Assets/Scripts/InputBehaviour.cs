@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class InputBehaviour : MonoBehaviour
 {
-    [SerializeField] private InputField _inputField;
-
-    [SerializeField] private Dropdown _dropdown;
-
+    [SerializeField] 
+    private InputField _inputField;
+    [SerializeField] 
+    private Dropdown _dropdown;
+    
     public List<string> words = new List<string>();
 
     void Start()
     {
         words = setupWords();
-
+        
         _dropdown.options.Clear();
         _inputField.onEndEdit.AddListener(arg0 => tempp());
-
     }
 
     List<string> FindWords(string name)
@@ -52,7 +52,7 @@ public class InputBehaviour : MonoBehaviour
     void tempp()
     {
         _dropdown.options = datas(FindWords(_inputField.text));
-        
+
         _dropdown.Hide();
         _dropdown.Show();
        
